@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom";
 import "../styles/ProductCard.css"
 import { useCart } from "../context/cart-context";
+import { useWishlist } from "../context/wishlist-context";
 
-export default function ProductCard ({id, name, description, price, quantity, category, brand, visited}) {
+export default function ProductCard ({id, name, description, price, quantity, category, brand, visited, about}) {
 
     const { addToCart } = useCart();
+    const { addToWishlist } = useWishlist();
 
     return (
         <li key={id}>
@@ -16,7 +18,8 @@ export default function ProductCard ({id, name, description, price, quantity, ca
             {visited && <p>Brand: {brand}</p>}
             {!visited && <p>Price: {price}</p>}
             {!visited && <div><NavLink to={`/about/${id}`}>Visit Item</NavLink></div>}
-            {!visited && <button onClick={() => addToCart(id)}>Add To Cart</button>}
+            {(!visited || about) && <button onClick={() => addToCart(id)}>Add To Cart</button>}
+            {(!visited || about) && <button onClick={() => addToWishlist(id)}>Add To Wishlist</button>}
         </li>
     )
 }

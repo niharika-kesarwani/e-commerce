@@ -12,7 +12,7 @@ export function About () {
     return (
         <div>
             <h2>About</h2>
-            <ProductCard {...visitedProduct} visited />
+            <ProductCard {...visitedProduct} visited about/>
         </div>
     )
 }
