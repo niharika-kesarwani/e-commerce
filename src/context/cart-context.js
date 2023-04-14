@@ -8,9 +8,11 @@ export const CartProvider = ({children}) => {
     const {productsArray} = useProducts();
     const [cartArray, setCartArray] = useState([]);
 
-    const addToCart = addItemId => setCartArray([...cartArray, productsArray.find(({id}) => id === addItemId)])
+    const addToCart = addItemId => setCartArray([productsArray.find(({id}) => id === addItemId), ...cartArray]);
 
-    return <CartContext.Provider value={{addToCart, cartArray}}>
+    const removeFromCart = removeItemId => setCartArray(cartArray.filter(({id}) => id !== removeItemId))
+
+    return <CartContext.Provider value={{cartArray, addToCart, removeFromCart}}>
         {children}
     </CartContext.Provider>
 }

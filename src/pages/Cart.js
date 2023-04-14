@@ -4,7 +4,7 @@ import "../styles/Cart.css"
 
 export function Cart () {
 
-    const {cartArray} = useCart(); 
+    const { cartArray, removeFromCart } = useCart(); 
     
     return (
         <div>
@@ -15,6 +15,7 @@ export function Cart () {
                 cartArray && cartArray.map(product => 
                     <div>
                         <ProductCard key={product.id} {...product} visited />
+                        <button onClick={() => removeFromCart(product.id)}>Remove from Cart</button>
                         <hr />
                     </div>
                 )
