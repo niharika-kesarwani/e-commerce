@@ -10,7 +10,9 @@ export const WishlistProvider = ({children}) => {
 
     const addToWishlist = addItemId => setWishlistArray([productsArray.find(({id}) => id === addItemId), ...wishlistArray]);
 
-    return <WishlistContext.Provider value={{wishlistArray, addToWishlist}}>
+    const removeFromWishlist = removeItemId => setWishlistArray(wishlistArray.filter(({id}) => id !== removeItemId));
+
+    return <WishlistContext.Provider value={{wishlistArray, addToWishlist, removeFromWishlist}}>
         {children}
     </WishlistContext.Provider>
 }

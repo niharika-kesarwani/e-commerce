@@ -3,7 +3,7 @@ import { useWishlist } from "../context/wishlist-context";
 
 export function Wishlist () {
 
-    const { wishlistArray } = useWishlist();
+    const { wishlistArray, removeFromWishlist } = useWishlist();
 
     return (
         <div>
@@ -14,6 +14,7 @@ export function Wishlist () {
                 wishlistArray && wishlistArray.map(product => 
                     <div>
                         <ProductCard {...product} visited />
+                        <button onClick={() => removeFromWishlist(product.id)}>Remove from Wishlist</button>
                         <hr />
                     </div>
                 )
