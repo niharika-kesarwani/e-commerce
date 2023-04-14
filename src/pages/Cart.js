@@ -1,14 +1,25 @@
 import ProductCard from "../components/ProductCard";
-import { useProducts } from "../context/product-context"
+import { useCart } from "../context/cart-context";
+import "../styles/Cart.css"
 
 export function Cart () {
 
-    const {productsArray} = useProducts();
+    const {cartArray} = useCart(); 
     
     return (
         <div>
             <h2>My Cart</h2>
-            <ProductCard {...productsArray[0]} visited />
+            <h2>Items: {cartArray.length}</h2>
+            <ul>
+            {
+                cartArray && cartArray.map(product => 
+                    <div>
+                        <ProductCard key={product.id} {...product} visited />
+                        <hr />
+                    </div>
+                )
+            }
+            </ul>
         </div>
     )
 }

@@ -10,7 +10,7 @@ export function ProductList () {
             <ul>
             {
                 productsArray.map(product =>
-                    <ProductCard {...product}/>
+                    <ProductCard key={product.id} {...product}/>
                 )
             }
             </ul>
