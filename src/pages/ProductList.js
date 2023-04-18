@@ -3,7 +3,14 @@ import { useProducts } from "../context/product-context";
 import ProductCard from "../components/ProductCard";
 
 export function ProductList () {
-    const {productsArray} = useProducts();
+    const {productsArray, isLoading} = useProducts();
+    
+    if (isLoading) {
+        return <h1>Loading...</h1>
+    }
+    if (productsArray.length === 0) {
+        return <h1>No Data Available...</h1>
+    }
     
     return (
         <div>
